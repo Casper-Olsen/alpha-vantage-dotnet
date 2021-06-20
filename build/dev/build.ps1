@@ -1,3 +1,3 @@
 # Build projects
-dotnet build ../../src/AlphaVantage
-dotnet build ../../test/AlphaVantage.Test
+dotnet restore ../../src/AlphaVantage.sln
+dotnet build ../../src/AlphaVantage.sln --no-restore
