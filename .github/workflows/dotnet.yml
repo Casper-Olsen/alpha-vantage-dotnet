@@ -1,4 +1,4 @@
-name: Alpha vantage .NET workflow
+name: Alpha vantage .NET build and test
 
 on:
   push:
