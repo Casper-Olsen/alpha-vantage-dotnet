@@ -1,4 +1,4 @@
-name: alpha vantage .NET workflow
+name: Alpha vantage .NET workflow
 
 on:
   push:
@@ -16,13 +16,16 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup alpha vantage .NET workflow
+    - name: Setup - Alpha vantage .NET workflow
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore AlphaVantage
+      run:
+        dotnet restore AlphaVantage.sln
     - name: Build
-      run: dotnet build AlphaVantage --no-restore
+      run:
+        dotnet build AlphaVantage.sln --no-restore
     - name: Test
-      run: dotnet test ../test/AlphaVantage.Test --no-build --verbosity normal
+      run:
+        dotnet test AlphaVantage.sln --no-build --verbosity normal
