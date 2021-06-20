@@ -22,7 +22,7 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run:
-        dotnet restore ..\AlphaVantage.sln
+        dotnet restore ../AlphaVantage.sln
     - name: Build solution
       run:
         dotnet build ../AlphaVantage.sln --no-restore
