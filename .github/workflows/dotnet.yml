@@ -23,7 +23,7 @@ jobs:
     - name: Restore dependencies
       run:
         dotnet restore AlphaVantage.sln
-    - name: Build
+    - name: Build solution
       run:
         dotnet build AlphaVantage.sln --no-restore
     - name: Test
