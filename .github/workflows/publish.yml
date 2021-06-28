@@ -1,4 +1,4 @@
-name: Alpha vantage publish
+name: Alpha vantage publish NuGet Package
 
 on:
   workflow_dispatch:
@@ -15,7 +15,7 @@ on:
       verbosity:
         description: 'Verbosity'
         required: true
-        default: 'normal'
+        default: 'minimal'
 
 jobs:
   publish:
