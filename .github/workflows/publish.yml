@@ -53,4 +53,4 @@ jobs:
         
     - name: Nuget add source
       run:
-        dotnet nuget add source --username Casper-Olsen --store-password-in-clear-text --password ${{ secrets.GH_TOKEN }} --name github "https://nuget.pkg.github.com/Casper-Olsen/index.json"        
+        dotnet nuget add source -n github "https://nuget.pkg.github.com/Casper-Olsen/index.json" -u Casper-Olsen -p ${{ secrets.GH_TOKEN }} --store-password-in-clear-text
