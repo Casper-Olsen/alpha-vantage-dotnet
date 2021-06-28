@@ -42,3 +42,7 @@ jobs:
     - name: Publish
       run:
         dotnet publish ../AlphaVantage.sln --configuration Release --no-build
+        
+    - name: Pack
+      run:
+        dotnet pack ../AlphaVantage.sln --configuration Release --no-build
