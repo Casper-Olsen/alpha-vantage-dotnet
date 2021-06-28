@@ -14,14 +14,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
     - name: Setup - Alpha vantage .NET release
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
         node-version: 12
+        
     - name: Install dependencies
       run: |
         npm install semantic-release @semantic-release/git @semantic-release/changelog
+        
     - name: Release
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
