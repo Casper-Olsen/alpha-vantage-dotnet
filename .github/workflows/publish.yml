@@ -12,9 +12,6 @@ on:
       fileVersion:
         description: 'File version'
         required: true
-      versionSuffix:
-        description: 'Version suffix'
-        required: false
       verbosity:
         description: 'Verbosity'
         required: true
@@ -54,10 +51,10 @@ jobs:
       run:
         dotnet nuget add source -u Casper-Olsen -p ${{ secrets.PUBLISH_SECRET }} --store-password-in-clear-text -n github "https://nuget.pkg.github.com/Casper-Olsen/index.json"
         
-    - name: Pack with Version suffix
+    - name: Pack
       if: ${{ github.event.inputs.versionSuffix }} != ''}}
       run:
-        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build --version-suffix ${{ github.event.inputs.versionSuffix }} --verbosity ${{ github.event.inputs.verbosity }}
+        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build --verbosity ${{ github.event.inputs.verbosity }}
         
     - name: Push
       working-directory: src/AlphaVantage.Core/bin/Release
