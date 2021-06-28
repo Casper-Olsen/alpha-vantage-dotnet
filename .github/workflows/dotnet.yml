@@ -41,4 +41,4 @@ jobs:
         
     - name: Pack
       run:
-        dotnet pack ../AlphaVantage.sln --configuration Release --no-build
+        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build
