@@ -1,4 +1,4 @@
-name: Alpha vantage .NET build and test
+name: Alpha vantage publish
 
 on:
   workflow_dispatch:
