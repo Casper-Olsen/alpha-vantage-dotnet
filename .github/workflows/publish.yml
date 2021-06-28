@@ -47,10 +47,15 @@ jobs:
       run:
         dotnet test ../AlphaVantage.sln --configuration Release --no-build --verbosity ${{ github.event.inputs.verbosity }}
         
+    - name: Nuget add source
+      run:
+        dotnet nuget add source -u Casper-Olsen -p ${{ secrets.PUBLISH_SECRET }} --store-password-in-clear-text -n github "https://nuget.pkg.github.com/Casper-Olsen/index.json"
+        
     - name: Pack
       run:
         dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build --verbosity ${{ github.event.inputs.verbosity }}
         
-    - name: Nuget add source
+    - name: Push
+      working-directory: src/AlphaVantage.Core/bin/Release
       run:
-        dotnet nuget add source -u Casper-Olsen -p ${{ secrets.PUBLISH_SECRET }} --store-password-in-clear-text -n github "https://nuget.pkg.github.com/Casper-Olsen/index.json"
+        dotnet nuget push "*.nupkg" --api-key ${{ secrets.PUBLISH_SECRET }} --source "github"
