@@ -19,17 +19,22 @@ jobs:
         working-directory: src
 
     steps:
+    - name: Checkout
     - uses: actions/checkout@v2
-    - name: Setup - Alpha vantage .NET build and test
+    
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
+        
     - name: Restore dependencies
       run:
         dotnet restore ../AlphaVantage.sln
+        
     - name: Build solution
       run:
         dotnet build ../AlphaVantage.sln --no-restore
+        
     - name: Test
       run:
         dotnet test ../AlphaVantage.sln --no-build --verbosity normal
