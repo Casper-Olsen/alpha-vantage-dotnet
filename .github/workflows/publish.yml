@@ -1,0 +1,52 @@
+name: Alpha vantage .NET build and test
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+      assemblyVersion:
+        description: 'Assembly version'
+        required: true
+      fileVersion:
+        description: 'File version'
+        required: true
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+
+jobs:
+  build:
+
+    runs-on: [ ubuntu-latest ]
+      
+    defaults:
+      run:
+        working-directory: src
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore dependencies
+      run:
+        dotnet restore ../AlphaVantage.sln
+        
+    - name: Build solution
+      run:
+        dotnet build ../AlphaVantage.sln --configuration Release --no-restore /p:Version=${{ github.event.inputs.version }} /p:AssemblyVersion=${{ github.event.inputs.assemblyVersion }} /p:FileVersion=${{ github.event.inputs.fileVersion }}
+        
+    - name: Test
+      run:
+        dotnet test ../AlphaVantage.sln --configuration Release --no-build --verbosity normal
+        
+    - name: Pack
+      run:
+        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build
