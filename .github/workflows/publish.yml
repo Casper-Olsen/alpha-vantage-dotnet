@@ -53,7 +53,7 @@ jobs:
         
     - name: Pack
       run:
-        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build --verbosity ${{ github.event.inputs.verbosity }}
+        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build --version-suffix ${{ github.event.inputs.version }} --verbosity ${{ github.event.inputs.verbosity }}
         
     - name: Push
       working-directory: src/AlphaVantage.Core/bin/Release
