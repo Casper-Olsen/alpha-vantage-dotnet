@@ -52,7 +52,6 @@ jobs:
         dotnet nuget add source -u Casper-Olsen -p ${{ secrets.PUBLISH_SECRET }} --store-password-in-clear-text -n github "https://nuget.pkg.github.com/Casper-Olsen/index.json"
         
     - name: Pack
-      if: ${{ github.event.inputs.versionSuffix }} != ''}}
       run:
         dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build --verbosity ${{ github.event.inputs.verbosity }}
         
