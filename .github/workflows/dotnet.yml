@@ -38,7 +38,3 @@ jobs:
     - name: Test
       run:
         dotnet test ../AlphaVantage.sln --configuration Release --no-build --verbosity normal
-        
-    - name: Pack
-      run:
-        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build
