@@ -13,9 +13,10 @@ jobs:
           os: [ ubuntu-latest, windows-latest]
 
     steps:
+    - name: Checkout
     - uses: actions/checkout@v2
     
-    - name: Setup - Alpha vantage .NET release
+    - name: Setup dotnet
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.x
