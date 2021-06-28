@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <PackageId>AlphaVantageDotNet</PackageId>
+    <Authors>Casper Olsen</Authors>
+    <PackageDescription>A .NET wrapper for the Alpha Vantage API.</PackageDescription>
+    <RepositoryUrl>https://github.com/Casper-Olsen/aplha-vantage-dotnet</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
