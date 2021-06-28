@@ -1,0 +1,28 @@
+name: Alpha vantage .NET release
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  release:
+
+    runs-on: [ ubuntu-latest ]
+    strategy:
+        matrix:
+          os: [ ubuntu-latest, windows-latest]
+      
+    defaults:
+      run:
+        working-directory: src
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup - Alpha vantage .NET release
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: npx semantic-release
