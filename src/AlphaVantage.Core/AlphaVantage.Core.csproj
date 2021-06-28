@@ -6,7 +6,7 @@
     <PackageId>AlphaVantageDotNet</PackageId>
     <Authors>Casper Olsen</Authors>
     <PackageDescription>A .NET wrapper for the Alpha Vantage API.</PackageDescription>
-    <RepositoryUrl>https://github.com/Casper-Olsen/aplha-vantage-dotnet</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Casper-Olsen/alpha-vantage-dotnet</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
