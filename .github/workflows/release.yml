@@ -11,10 +11,6 @@ jobs:
     strategy:
         matrix:
           os: [ ubuntu-latest, windows-latest]
-      
-    defaults:
-      run:
-        working-directory: src
 
     steps:
     - uses: actions/checkout@v2
