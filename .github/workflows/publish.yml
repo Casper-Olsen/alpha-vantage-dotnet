@@ -12,13 +12,13 @@ on:
       fileVersion:
         description: 'File version'
         required: true
-      logLevel:
-        description: 'Log level'
+      verbosity:
+        description: 'Verbosity'
         required: true
-        default: 'warning'
+        default: 'normal'
 
 jobs:
-  build:
+  publish:
 
     runs-on: [ ubuntu-latest ]
       
@@ -41,12 +41,16 @@ jobs:
         
     - name: Build solution
       run:
-        dotnet build ../AlphaVantage.sln --configuration Release --no-restore /p:Version=${{ github.event.inputs.version }} /p:AssemblyVersion=${{ github.event.inputs.assemblyVersion }} /p:FileVersion=${{ github.event.inputs.fileVersion }}
+        dotnet build ../AlphaVantage.sln --configuration Release --no-restore /p:Version=${{ github.event.inputs.version }} /p:AssemblyVersion=${{ github.event.inputs.assemblyVersion }} /p:FileVersion=${{ github.event.inputs.fileVersion }} --verbosity ${{ github.event.inputs.verbosity }}
         
     - name: Test
       run:
-        dotnet test ../AlphaVantage.sln --configuration Release --no-build --verbosity normal
+        dotnet test ../AlphaVantage.sln --configuration Release --no-build --verbosity ${{ github.event.inputs.verbosity }}
         
     - name: Pack
       run:
-        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build
+        dotnet pack AlphaVantage.Core/AlphaVantage.Core.csproj --configuration Release --no-build --verbosity ${{ github.event.inputs.verbosity }}
+        
+    - name: Pack
+      run:
+        dotnet nuget add source --username Casper-Olsen --password ${{ secrets.GH_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Casper-Olsen/index.json"        
